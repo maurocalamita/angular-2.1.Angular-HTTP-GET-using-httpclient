@@ -1,0 +1,29 @@
+<h1 class="heading"><strong>HTTPClient </strong> Example</h1>
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+  <label for="name">GitName:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="userName"/>
+  <button type="submit">Submit</button>
+
+
+<table class='table'>
+ <thead>
+ <tr>
+ <th>ID</th>
+ <th>Name</th>
+ <th>HTML Url</th>
+ <th>description</th>
+ </tr>
+ </thead>
+ <tbody>
+  <tr *ngFor="let repos of repos">
+  <td> {{repos.id}} </td>
+  <td>{{repos.name}}</td>
+  <td>{{repos.html_url}}</td>
+  <td>{{repos.description}}</td>
+</tr>
+</tbody>
+</table> 
+<pre>{{repos | json}}</pre>
+
+</form>
