@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     public getRepos() { 
       return this.http.get<GitHubRepos[]>(this.baseURL + 'users/' + this.userName + '/repos')
       .subscribe(
-     (response) => {         //Next callbackeeee
+     (response) => {         //Next callback
                  
       this.repos = response; 
 
