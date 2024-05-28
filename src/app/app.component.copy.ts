@@ -38,11 +38,12 @@ export class AppComponent implements OnInit {
           }
         },
         error: (error): void => {
+          
           this.errorMessage = {
             statusCode: error.status,
             message: error.error.message,
           };
-          this.loaded = false;
+          this.loaded = false 
           
         },
         complete: () => {
@@ -55,6 +56,7 @@ export class AppComponent implements OnInit {
 
   onSubmit(contactForm: FormGroup) {
     this.getRepos()
+    delete this.errorMessage;
   }
 
 }
