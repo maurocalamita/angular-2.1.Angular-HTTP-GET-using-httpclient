@@ -27,3 +27,6 @@
 <pre>{{repos | json}}</pre>
 
 </form>
+<div *ngIf="errorMessage" class="alert alert-warning">
+  <strong>Warning!</strong> {{errorMessage | json}}
+</div>

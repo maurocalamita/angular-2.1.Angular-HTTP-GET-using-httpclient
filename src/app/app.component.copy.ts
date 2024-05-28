@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { GitHubRepos } from './model/repository';
 import { FormGroup } from '@angular/forms';
 import { GithubService } from './service/github.service';
@@ -14,22 +13,17 @@ export class AppComponent implements OnInit {
   title = 'angular-frontend';
 
   userName: string = "maurocalamita"
-  baseURL: string = "https://api.github.com/";
   repos: GitHubRepos[]=[];
   errorMessage: any;
   loaded: boolean=false;
 
-  constructor(public http: HttpClient) {
-  }
+  constructor(private githubService: GithubService) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   public getRepos() {
     this.repos=[];
-    return this.http.get<GitHubRepos[]>(this.baseURL + 'users/' + this.userName + '/repos')
-      .subscribe({
+    this.githubService.getUserRepos(this.userName).subscribe({
         next: (response: GitHubRepos[]) => {
           if (response.length !== 0) {
             response.map((item: { id: any; name: any; html_url: any; description: any; }) => {
