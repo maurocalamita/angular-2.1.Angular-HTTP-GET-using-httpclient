@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
                 description: item.description
               });
             });
-            this.loaded = true;
+            this.loaded = false;
           }
         },
         error: (error): void => {
@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
             message: error.error.message,
           };
           this.loaded = false;
+          
         },
         complete: () => {
           console.log('Request completed.');
