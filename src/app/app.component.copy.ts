@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GitHubRepos } from './model/repository';
 import { FormGroup } from '@angular/forms';
 import { GithubService } from './service/github.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -46,14 +47,15 @@ export class AppComponent implements OnInit {
             this.noDataFound=true;
           }
         },
-        error: (error): void => {
-          this.noDataFound=false;
+        error: (err: HttpErrorResponse ): void => {
+          this.noDataFound = false;
           this.errorMessage = {
-            statusCode: error.status,
-            message: error.error.message,
+            statusCode: err.status + ', ' + err.error.message,
+            //message: err.error.message
+            message: err.message.substring(0,err.message.indexOf( ": 404 OK" ))   // elimina ": 404 OK" dal messaggio
           };
-          this.loaded = false; 
-          
+          console.log(`HttpErrorResponse body: ${JSON.stringify(err)}`);                        // stampa di tutto l'HttpErrorResponse   
+          this.loaded = false;
         },
         complete: () => {
           console.log('Request completed.');
