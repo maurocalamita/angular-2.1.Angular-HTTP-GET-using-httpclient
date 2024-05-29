@@ -8,8 +8,8 @@ baseURL: string = 'https://api.github.com/users';
 
   constructor(private http: HttpClient) {}
 
-  getUserRepos(username: string): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}/${username}/repos`);
+  getRepos(userName: string): Observable<any> {
+    return this.http.get(this.baseURL + 'users/'+ userName + '/repos');
   }
 
   addPerson(username:string): Observable<any> {

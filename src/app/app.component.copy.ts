@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   public getRepos() {
     this.repos=[];
-    this.githubService.getUserRepos(this.userName).subscribe({
+    this.githubService.getRepos(this.userName).subscribe({
         next: (response: GitHubRepos[]) => {
           if (response.length !== 0) {
             response.map((item: { id: any; name: any; html_url: any; description: any; }) => {
