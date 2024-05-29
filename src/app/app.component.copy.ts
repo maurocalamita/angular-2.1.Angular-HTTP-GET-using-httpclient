@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   repos: GitHubRepos[]=[];
   errorMessage: any;
   loaded: boolean=false;
+  noDataFound: boolean=false;
+  noDataFoundmsg: string="in github non è presente alcun repository";
+
 
   constructor(private githubService: GithubService) {}
 
@@ -23,8 +26,9 @@ export class AppComponent implements OnInit {
 
   public getRepos() {
     this.repos=[];
-    this.githubService.getRepos(this.userName).subscribe({
-        next: (response: GitHubRepos[]) => {
+    this.errorMessage="";
+    this.githubService.getUserRepos(this.userName).subscribe({
+        next: (response: GitHubRepos[]): void => {
           if (response.length !== 0) {
             response.map((item: { id: any; name: any; html_url: any; description: any; }) => {
               this.repos.push({
@@ -34,21 +38,26 @@ export class AppComponent implements OnInit {
                 description: item.description
               });
             });
+            this.loaded = true;
+            this.noDataFound=false;
+
+          } else {
             this.loaded = false;
+            this.noDataFound=true;
           }
         },
         error: (error): void => {
-          
+          this.noDataFound=false;
           this.errorMessage = {
             statusCode: error.status,
             message: error.error.message,
           };
-          this.loaded = false 
+          this.loaded = false; 
           
         },
         complete: () => {
           console.log('Request completed.');
-          this.loaded = true;
+          //this.loaded = true;
         },
       });
   }
