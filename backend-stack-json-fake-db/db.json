@@ -1,0 +1,36 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "name": "Andrea Sperelli"
+    },
+    {
+      "id": 2,
+      "name": "Giorgio Aurispa"
+    },
+    {
+      "name": "Jack Frusciante",
+      "id": 3
+    },
+    {
+      "name": "Giosuè Carducci",
+      "id": 4
+    },
+    {
+      "name": "Francesca (Checca) Catone",
+      "id": 5
+    },
+    {
+      "name": "Erminio Ottone",
+      "id": 6
+    },
+    {
+      "name": "Pina Scalop",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "name": "mauro"
+    }
+  ]
+}

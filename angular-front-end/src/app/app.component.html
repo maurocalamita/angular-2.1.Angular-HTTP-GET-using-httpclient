@@ -1,0 +1,40 @@
+<h1 class="heading">Angular <strong>HTTP </strong>Demo</h1>
+<div>
+  <div class="form-group row">
+    <label class="col-sm-1 col-form-label" >Name: </label>
+    <input [(ngModel)]="person.name" >
+  </div>
+  <div>
+    <button (click)="createPerson()">Add</button>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-warning">
+  <strong>Warning!</strong> {{errorMessage | json}}
+</div>
+
+<div *ngIf="noDataFound" class="alert alert-primary" role="alert">
+  <strong>Info: </strong> {{noDataFoundmsg}}
+</div>
+
+<br>
+
+  <table class='table'>
+    <thead class="thead-light">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let repo of people;">
+        <td>{{repo.id}}</td>
+        <td>{{repo.name}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+
+<!-- <pre>{{repos | json}}</pre> -->
